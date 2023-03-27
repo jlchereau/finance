@@ -1,0 +1,1557 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# ">
+  <head>
+    <meta charset="utf-8" /><script type="text/javascript">(window.NREUM||(NREUM={})).init={ajax:{deny_list:["bam.nr-data.net"]}};(window.NREUM||(NREUM={})).loader_config={licenseKey:"32edb8f179",applicationID:"436723953"};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var i=e[n]={exports:{}};t[n][0].call(i.exports,function(e){var i=t[n][1][e];return r(i||e)},i,i.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var i=0;i<n.length;i++)r(n[i]);return r}({1:[function(t,e,n){function r(){}function i(t,e,n,r){return function(){return s.recordSupportability("API/"+e+"/called"),o(t+e,[u.now()].concat(c(arguments)),n?null:this,r),n?void 0:this}}var o=t("handle"),a=t(9),c=t(10),f=t("ee").get("tracer"),u=t("loader"),s=t(4),d=NREUM;"undefined"==typeof window.newrelic&&(newrelic=d);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],l="api-",v=l+"ixn-";a(p,function(t,e){d[e]=i(l,e,!0,"api")}),d.addPageAction=i(l,"addPageAction",!0),d.setCurrentRouteName=i(l,"routeName",!0),e.exports=newrelic,d.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(t,e){var n={},r=this,i="function"==typeof e;return o(v+"tracer",[u.now(),t,n],r),function(){if(f.emit((i?"":"no-")+"fn-start",[u.now(),r,i],n),i)try{return e.apply(this,arguments)}catch(t){throw f.emit("fn-err",[arguments,this,t],n),t}finally{f.emit("fn-end",[u.now()],n)}}}};a("actionText,setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){m[e]=i(v,e)}),newrelic.noticeError=function(t,e){"string"==typeof t&&(t=new Error(t)),s.recordSupportability("API/noticeError/called"),o("err",[t,u.now(),!1,e])}},{}],2:[function(t,e,n){function r(t){if(NREUM.init){for(var e=NREUM.init,n=t.split("."),r=0;r<n.length-1;r++)if(e=e[n[r]],"object"!=typeof e)return;return e=e[n[n.length-1]]}}e.exports={getConfiguration:r}},{}],3:[function(t,e,n){var r=!1;try{var i=Object.defineProperty({},"passive",{get:function(){r=!0}});window.addEventListener("testPassive",null,i),window.removeEventListener("testPassive",null,i)}catch(o){}e.exports=function(t){return r?{passive:!0,capture:!!t}:!!t}},{}],4:[function(t,e,n){function r(t,e){var n=[a,t,{name:t},e];return o("storeMetric",n,null,"api"),n}function i(t,e){var n=[c,t,{name:t},e];return o("storeEventMetrics",n,null,"api"),n}var o=t("handle"),a="sm",c="cm";e.exports={constants:{SUPPORTABILITY_METRIC:a,CUSTOM_METRIC:c},recordSupportability:r,recordCustom:i}},{}],5:[function(t,e,n){function r(){return c.exists&&performance.now?Math.round(performance.now()):(o=Math.max((new Date).getTime(),o))-a}function i(){return o}var o=(new Date).getTime(),a=o,c=t(11);e.exports=r,e.exports.offset=a,e.exports.getLastTimestamp=i},{}],6:[function(t,e,n){function r(t,e){var n=t.getEntries();n.forEach(function(t){"first-paint"===t.name?l("timing",["fp",Math.floor(t.startTime)]):"first-contentful-paint"===t.name&&l("timing",["fcp",Math.floor(t.startTime)])})}function i(t,e){var n=t.getEntries();if(n.length>0){var r=n[n.length-1];if(u&&u<r.startTime)return;var i=[r],o=a({});o&&i.push(o),l("lcp",i)}}function o(t){t.getEntries().forEach(function(t){t.hadRecentInput||l("cls",[t])})}function a(t){var e=navigator.connection||navigator.mozConnection||navigator.webkitConnection;if(e)return e.type&&(t["net-type"]=e.type),e.effectiveType&&(t["net-etype"]=e.effectiveType),e.rtt&&(t["net-rtt"]=e.rtt),e.downlink&&(t["net-dlink"]=e.downlink),t}function c(t){if(t instanceof y&&!w){var e=Math.round(t.timeStamp),n={type:t.type};a(n),e<=v.now()?n.fid=v.now()-e:e>v.offset&&e<=Date.now()?(e-=v.offset,n.fid=v.now()-e):e=v.now(),w=!0,l("timing",["fi",e,n])}}function f(t){"hidden"===t&&(u=v.now(),l("pageHide",[u]))}if(!("init"in NREUM&&"page_view_timing"in NREUM.init&&"enabled"in NREUM.init.page_view_timing&&NREUM.init.page_view_timing.enabled===!1)){var u,s,d,p,l=t("handle"),v=t("loader"),m=t(8),g=t(3),y=NREUM.o.EV;if("PerformanceObserver"in window&&"function"==typeof window.PerformanceObserver){s=new PerformanceObserver(r);try{s.observe({entryTypes:["paint"]})}catch(h){}d=new PerformanceObserver(i);try{d.observe({entryTypes:["largest-contentful-paint"]})}catch(h){}p=new PerformanceObserver(o);try{p.observe({type:"layout-shift",buffered:!0})}catch(h){}}if("addEventListener"in document){var w=!1,b=["click","keydown","mousedown","pointerdown","touchstart"];b.forEach(function(t){document.addEventListener(t,c,g(!1))})}m(f)}},{}],7:[function(t,e,n){function r(t,e){if(!i)return!1;if(t!==i)return!1;if(!e)return!0;if(!o)return!1;for(var n=o.split("."),r=e.split("."),a=0;a<r.length;a++)if(r[a]!==n[a])return!1;return!0}var i=null,o=null,a=/Version\/(\S+)\s+Safari/;if(navigator.userAgent){var c=navigator.userAgent,f=c.match(a);f&&c.indexOf("Chrome")===-1&&c.indexOf("Chromium")===-1&&(i="Safari",o=f[1])}e.exports={agent:i,version:o,match:r}},{}],8:[function(t,e,n){function r(t){function e(){t(c&&document[c]?document[c]:document[o]?"hidden":"visible")}"addEventListener"in document&&a&&document.addEventListener(a,e,i(!1))}var i=t(3);e.exports=r;var o,a,c;"undefined"!=typeof document.hidden?(o="hidden",a="visibilitychange",c="visibilityState"):"undefined"!=typeof document.msHidden?(o="msHidden",a="msvisibilitychange"):"undefined"!=typeof document.webkitHidden&&(o="webkitHidden",a="webkitvisibilitychange",c="webkitVisibilityState")},{}],9:[function(t,e,n){function r(t,e){var n=[],r="",o=0;for(r in t)i.call(t,r)&&(n[o]=e(r,t[r]),o+=1);return n}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],10:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,i=n-e||0,o=Array(i<0?0:i);++r<i;)o[r]=t[e+r];return o}e.exports=r},{}],11:[function(t,e,n){e.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(t,e,n){function r(){}function i(t){function e(t){return t&&t instanceof r?t:t?u(t,f,a):a()}function n(n,r,i,o,a){if(a!==!1&&(a=!0),!l.aborted||o){t&&a&&t(n,r,i);for(var c=e(i),f=m(n),u=f.length,s=0;s<u;s++)f[s].apply(c,r);var p=d[w[n]];return p&&p.push([b,n,r,c]),c}}function o(t,e){h[t]=m(t).concat(e)}function v(t,e){var n=h[t];if(n)for(var r=0;r<n.length;r++)n[r]===e&&n.splice(r,1)}function m(t){return h[t]||[]}function g(t){return p[t]=p[t]||i(n)}function y(t,e){l.aborted||s(t,function(t,n){e=e||"feature",w[n]=e,e in d||(d[e]=[])})}var h={},w={},b={on:o,addEventListener:o,removeEventListener:v,emit:n,get:g,listeners:m,context:e,buffer:y,abort:c,aborted:!1};return b}function o(t){return u(t,f,a)}function a(){return new r}function c(){(d.api||d.feature)&&(l.aborted=!0,d=l.backlog={})}var f="nr@context",u=t("gos"),s=t(9),d={},p={},l=e.exports=i();e.exports.getOrSetContext=o,l.backlog=d},{}],gos:[function(t,e,n){function r(t,e,n){if(i.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(o){}return t[e]=r,r}var i=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){i.buffer([t],r),i.emit(t,e,n)}var i=t("ee").get("handle");e.exports=r,r.ee=i},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,o,function(){return i++})}var i=1,o="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!M++){var t=T.info=NREUM.info,e=m.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return u.abort();f(x,function(e,n){t[e]||(t[e]=n)});var n=a();c("mark",["onload",n+T.offset],null,"api"),c("timing",["load",n]);var r=m.createElement("script");0===t.agent.indexOf("http://")||0===t.agent.indexOf("https://")?r.src=t.agent:r.src=l+"://"+t.agent,e.parentNode.insertBefore(r,e)}}function i(){"complete"===m.readyState&&o()}function o(){c("mark",["domContent",a()+T.offset],null,"api")}var a=t(5),c=t("handle"),f=t(9),u=t("ee"),s=t(7),d=t(2),p=t(3),l=d.getConfiguration("ssl")===!1?"http":"https",v=window,m=v.document,g="addEventListener",y="attachEvent",h=v.XMLHttpRequest,w=h&&h.prototype,b=!1;NREUM.o={ST:setTimeout,SI:v.setImmediate,CT:clearTimeout,XHR:h,REQ:v.Request,EV:v.Event,PR:v.Promise,MO:v.MutationObserver};var E=""+location,x={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1216.min.js"},O=h&&w&&w[g]&&!/CriOS/.test(navigator.userAgent),T=e.exports={offset:a.getLastTimestamp(),now:a,origin:E,features:{},xhrWrappable:O,userAgent:s,disabled:b};if(!b){t(1),t(6),m[g]?(m[g]("DOMContentLoaded",o,p(!1)),v[g]("load",r,p(!1))):(m[y]("onreadystatechange",i),v[y]("onload",r)),c("mark",["firstbyte",a.getLastTimestamp()],null,"api");var M=0}},{}],"wrap-function":[function(t,e,n){function r(t,e){function n(e,n,r,f,u){function nrWrapper(){var o,a,s,p;try{a=this,o=d(arguments),s="function"==typeof r?r(o,a):r||{}}catch(l){i([l,"",[o,a,f],s],t)}c(n+"start",[o,a,f],s,u);try{return p=e.apply(a,o)}catch(v){throw c(n+"err",[o,a,v],s,u),v}finally{c(n+"end",[o,a,p],s,u)}}return a(e)?e:(n||(n=""),nrWrapper[p]=e,o(e,nrWrapper,t),nrWrapper)}function r(t,e,r,i,o){r||(r="");var c,f,u,s="-"===r.charAt(0);for(u=0;u<e.length;u++)f=e[u],c=t[f],a(c)||(t[f]=n(c,s?f+r:r,i,f,o))}function c(n,r,o,a){if(!v||e){var c=v;v=!0;try{t.emit(n,r,o,e,a)}catch(f){i([f,n,r,o],t)}v=c}}return t||(t=s),n.inPlace=r,n.flag=p,n}function i(t,e){e||(e=s);try{e.emit("internal-error",t)}catch(n){}}function o(t,e,n){if(Object.defineProperty&&Object.keys)try{var r=Object.keys(t);return r.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(o){i([o],n)}for(var a in t)l.call(t,a)&&(e[a]=t[a]);return e}function a(t){return!(t&&t instanceof Function&&t.apply&&!t[p])}function c(t,e){var n=e(t);return n[p]=t,o(t,n,s),n}function f(t,e,n){var r=t[e];t[e]=c(r,n)}function u(){for(var t=arguments.length,e=new Array(t),n=0;n<t;++n)e[n]=arguments[n];return e}var s=t("ee"),d=t(10),p="nr@original",l=Object.prototype.hasOwnProperty,v=!1;e.exports=r,e.exports.wrapFunction=c,e.exports.wrapInPlace=f,e.exports.argsToArray=u},{}]},{},["loader"]);</script>
+<link rel="canonical" href="https://www.sec.gov/" />
+<link rel="shortlink" href="https://www.sec.gov/" />
+<meta name="Generator" content="Drupal 9 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="id" content="2431" />
+<meta name="date" content="2017-02-05T05:36:00" />
+<link rel="icon" href="/themes/custom/secgov/favicon.ico" type="image/vnd.microsoft.icon" />
+<script src="/files/google_tag/primary/google_tag.script.js?rfqc01" defer></script>
+
+    <meta name="origin" content="Drupal" />
+    <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=3.0" />
+    <title>SEC.gov | HOME</title>
+    <script>window.env = "production";</script>
+    <link rel="stylesheet" media="all" href="/files/css/css_pjhR_1y-Xrfhao04eg2YOSokie046z1_BjzVk0n0Dng.css" />
+<link rel="stylesheet" media="all" href="/files/css/css_qgPn2XrDdEK2trS6xvG8ir17-n2yXANZ5wX4997mbJs.css" />
+
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","scriptPath":null,"pathPrefix":"","currentPath":"node\/2431","currentPathIsAdmin":false,"isFront":true,"currentLanguage":"en"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"data":{"extlink":{"extTarget":false,"extTargetNoOverride":false,"extNofollow":false,"extNoreferrer":false,"extFollowNoOverride":false,"extClass":"0","extLabel":"(link is external)","extImgClass":false,"extSubdomains":true,"extExclude":".*\\.gov|http:\/\/www.xbrl.org\/utr\/2013-05-17\/utr.xml|http:\/\/www.xbrl.org\/dtr\/type\/numeric-2009-12-16.xsd|http:\/\/www.xbrl.org\/dtr\/type\/nonNumeric-2009-12-16.xsd|https:\/\/secir.secure.force.com\/ombudsman\/OMMSForm","extInclude":"","extCssExclude":".data-exempt","extCssExplicit":"","extAlert":true,"extAlertText":"You are now leaving the SEC Website. The link you have selected is located on another server. Please click on the OK button below to proceed to the selected site. The SEC does not endorse this web site, its sponsor, or any of the policies, activities, products, or services offered on the site or by any advertiser on the site.","mailtoClass":"0","mailtoLabel":"(link sends email)","extUseFontAwesome":false,"extIconPlacement":"append","extFaLinkClasses":"fa fa-external-link","extFaMailtoClasses":"fa fa-envelope-o","whitelistedDomains":null}},"sec_datatable":{"columnDefs":[]},"flexslider":{"optionsets":{"homepage_hero":{"animation":"fade","animationSpeed":600,"direction":"horizontal","slideshow":true,"easing":"swing","smoothHeight":false,"reverse":false,"slideshowSpeed":30000,"animationLoop":true,"randomize":true,"startAt":0,"itemWidth":0,"itemMargin":0,"minItems":0,"maxItems":0,"move":0,"directionNav":false,"controlNav":false,"thumbCaptions":false,"thumbCaptionsBoth":false,"keyboard":false,"multipleKeyboard":false,"mousewheel":false,"touch":true,"prevText":"Previous","nextText":"Next","namespace":"flex-","selector":".slides \u003E li","sync":"","asNavFor":"","initDelay":0,"useCSS":true,"video":false,"pausePlay":false,"pauseText":"Pause","playText":"Play","pauseOnAction":true,"pauseOnHover":false,"controlsContainer":"","manualControls":""}},"instances":{"flexslider-1":"homepage_hero"}},"user":{"uid":0,"permissionsHash":"04c00260856b47a8f01845e15ffeca03669183d8466dd7ddc4290c568154092e"}}</script>
+<script src="/files/js/js_DkdESgtfPfV7guog-Lhz7nda0K-ISZe0-gHU4CF6Wo0.js"></script>
+
+  </head>
+  <body class="default-view path-frontpage node--type-landing-page">
+
+    <a href="#main-content" class="visually-hidden focusable" tabindex="1">
+      Skip to main content
+    </a>
+    <noscript aria-hidden="true"><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TD3BKV" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    <div class="page-container">
+<div id="page-wrapper">
+  <div id="page" class="homepage">
+    <div class="page-header" role="banner">
+      <div class="header-content">
+        <div id="global-header" class="region region-header">
+    
+<div id="block-digitalgovsearch" class="block global-header-digitalgov-search">
+  
+    
+        <div class="body"><!--<div class="hide-for-small" id="global-search">
+<form accept-charset="UTF-8" action="//secsearch.sec.gov/search" class="clearfix" id="global-search-form" method="get" name="form_iQueryForm">
+<fieldset><legend></legend> <label class="overlabel" for="global-search-box" style="visibility: visible;">Search SEC.gov</label> <input name="utf8" type="hidden" value="?" /> <input class="affiliate" name="affiliate" type="hidden" value="secsearch" /> <input aria-autocomplete="list" aria-haspopup="true" autocomplete="off" class="usagov-search-autocomplete ui-autocomplete-input" id="global-search-box" name="query" role="textbox" tabindex="4" title="Search for" type="text" /> <span aria-hidden="true" class="button-label fa fa-search"> </span><input class="global-search-button" tabindex="5" title="Go" type="submit" value="" /></fieldset>
+</form>
+
+<p class="options"><a class="option-link" href="http://www.sec.gov/edgar/searchedgar/companysearch.html" tabindex="6">Company Filings</a> | <a class="option-link" href="http://www.sec.gov/search/search.htm" tabindex="7">More Search Options</a></p>
+</div>-->
+<div class="block block--search block--search-form" id="global-search" role="search">
+<form accept-charset="UTF-8" action="//secsearch.sec.gov/search" class="clearfix" id="global-search-form" method="get" name="form_iQueryForm">
+<fieldset><legend></legend>
+<div class="search-box-container"><label class="overlabel" for="global-search-box" style="visibility: visible;">Search SEC.gov</label> <input name="utf8" type="hidden" value="?" /> <input class="affiliate" name="affiliate" type="hidden" value="secsearch" /> <input aria-autocomplete="list" aria-haspopup="true" autocomplete="off" class="usagov-search-autocomplete ui-autocomplete-input" id="global-search-box" name="query" role="textbox" title="Search for" type="text" /> <span aria-hidden="true" class="button-label fa fa-search"> </span> <input class="global-search-button" title="Go" type="submit" value="" /></div>
+</fieldset>
+</form>
+
+<div class="menu-name-menu-utility-menu">
+<p class="options"><span><a class="option-link" href="http://www.sec.gov/edgar/searchedgar/companysearch.html">Company Filings</a></span> <!--<span><a class="option-link" href="http://www.sec.gov/search/search.htm">More Search Options</a></span>--></p>
+</div>
+</div>
+</div>
+  </div>
+<div id="block-secgov-branding" class="site-branding block region__inner system_branding_block">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+      
+    <div class="banner-seal">
+    <a href="/" title="SEC Emblem" rel="home" tabindex="2">
+      <img src="/files/sec-logo.png" alt="SEC Emblem" />
+    </a>
+  </div>
+  
+    <div class="banner-org-name">
+      <a href="/" title="U.S. Securities and Exchange Commission" rel="home" tabindex="3">U.S. Securities and <br>Exchange Commission</a>
+  </div>
+   
+
+    <button id="mobile-menu-toggle" class="is-closed" aria-label="Menu Toggle">
+    <span class="svg-icon svg-icon-sm" aria-hidden="true">q</span>
+  </button>
+
+    </div>
+  </div>
+</div>
+  </div>
+
+
+      </div>
+      <div class="global-navigation" id="global-navigation">
+          <div class="navigation-wrapper region region-global-navigation">
+    <div id="block-secgov-main-menu" class="block region__inner main">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+          
+    
+              <ul id="home-menu" class="menu">
+                          <li class="menu__item is-expanded expanded" >
+                <a href="/about.shtml" title="About" class="menu__link">About</a>
+                                <ul class="menu">
+                          <li class="menu__item is-active is-leaf leaf ">
+                <a href="/careers" title="Careers" class="menu__link">Careers</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/Article/about-commissioners.html" title="Commissioners" class="menu__link">Commissioners</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/contact-information/sec-directory" title="Contact" class="menu__link">Contact</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/reports" title="Reports and Publications" class="menu__link">Reports and Publications</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/answers/about-lawsshtml.html" title="Securities Laws" class="menu__link">Securities Laws</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/about/what-we-do" title="What We Do" class="menu__link">What We Do</a>
+              </li>
+        </ul>
+  
+              </li>
+                    <li class="menu__item is-expanded expanded" >
+                <a href="/divisions.shtml" title="Divisions &amp; Offices" class="menu__link">Divisions &amp; Offices</a>
+                                <ul class="menu">
+                          <li class="menu__item is-active is-leaf leaf ">
+                <a href="/divisions/corpfin.shtml" title="Corporation Finance" class="menu__link">Corporation Finance</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/divisions/enforce.shtml" title="Enforcement" class="menu__link">Enforcement</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/investment" title="Investment Management" class="menu__link">Investment Management</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/divisions/riskfin.shtml" title="Economic and Risk Analysis" class="menu__link">Economic and Risk Analysis</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/divisions/marketreg.shtml" title="Trading and Markets" class="menu__link">Trading and Markets</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/alj" title="Office of Administrative Law Judges" class="menu__link">Office of Administrative Law Judges</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/exams" title="Examinations" class="menu__link">Examinations</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/page/sec-regional-offices" title="Regional Offices" class="menu__link">Regional Offices</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/divisions.shtml" title="All Divisions and Offices" class="menu__link">All Divisions and Offices</a>
+              </li>
+        </ul>
+  
+              </li>
+                    <li class="menu__item is-expanded expanded" >
+                <a href="/page/litigation" title="Enforcement" class="menu__link">Enforcement</a>
+                                <ul class="menu">
+                          <li class="menu__item is-active is-leaf leaf ">
+                <a href="/litigation/litreleases.shtml" title="Litigation Releases" class="menu__link">Litigation Releases</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/litigation/admin.shtml" title="Administrative Proceedings" class="menu__link">Administrative Proceedings</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/litigation/opinions.shtml" title="Opinions and Adjudicatory Orders" class="menu__link">Opinions and Adjudicatory Orders</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/divisions/enforce/friactions.shtml" title="Accounting and Auditing" class="menu__link">Accounting and Auditing</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/litigation/suspensions.shtml" title="Trading Suspensions" class="menu__link">Trading Suspensions</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/news/newsroom/howinvestigationswork.html" title="How Investigations Work" class="menu__link">How Investigations Work</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/divisions/enforce/receiverships.htm" title="Receiverships" class="menu__link">Receiverships</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/enforce/information-for-harmed-investors" title="Information for Harmed Investors" class="menu__link">Information for Harmed Investors</a>
+              </li>
+        </ul>
+  
+              </li>
+                    <li class="menu__item is-expanded expanded" >
+                <a href="/rules.shtml" title="Regulation" class="menu__link">Regulation</a>
+                                <ul class="menu">
+                          <li class="menu__item is-active is-leaf leaf ">
+                <a href="/rules/rulemaking-index.shtml" title="Rulemaking Index" class="menu__link">Rulemaking Index</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/rules/proposed.shtml" title="Proposed Rules" class="menu__link">Proposed Rules</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/rules/final.shtml" title="Final Rules" class="menu__link">Final Rules</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/rules/interim-final-temp.shtml" title="Interim Final Temporary Rules" class="menu__link">Interim Final Temporary Rules</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/rules/other.shtml" title="Other Orders and Notices" class="menu__link">Other Orders and Notices</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/rules/sro.shtml" title="Self-Regulatory Organizations" class="menu__link">Self-Regulatory Organizations</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/regulation/staff-interpretations" title="Staff Interpretations" class="menu__link">Staff Interpretations</a>
+              </li>
+        </ul>
+  
+              </li>
+                    <li class="menu__item is-expanded expanded" >
+                <a href="/education" title="Education" class="menu__link">Education</a>
+                                <ul class="menu">
+                          <li class="menu__item is-active is-leaf leaf ">
+                <a href="/education/investor-education" title="Investor Education" class="menu__link">Investor Education</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/education/capitalraising" title="Small Business Capital Raising " class="menu__link">Small Business Capital Raising </a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/education/glossary" title="Glossaries" class="menu__link">Glossaries</a>
+              </li>
+        </ul>
+  
+              </li>
+                    <li class="menu__item is-expanded expanded" >
+                <a href="/edgar.shtml" title="Filings" class="menu__link">Filings</a>
+                                <ul class="menu">
+                          <li class="menu__item is-active is-leaf leaf ">
+                <a href="/edgar/search-and-access" title="EDGAR – Search &amp; Access" class="menu__link">EDGAR – Search &amp; Access</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/edgar/filer-information" title="EDGAR – Information for Filers" class="menu__link">EDGAR – Information for Filers</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/edgar/searchedgar/companysearch.html" title="Company Filing Search" class="menu__link">Company Filing Search</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/oiea/Article/edgarguide.html" title="How to Search EDGAR" class="menu__link">How to Search EDGAR</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/fast-answers/answerspublicdocshtm.html" title="Requesting Public Documents" class="menu__link">Requesting Public Documents</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/forms" title="Forms List" class="menu__link">Forms List</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/edgar/about" title="About EDGAR" class="menu__link">About EDGAR</a>
+              </li>
+        </ul>
+  
+              </li>
+                    <li class="menu__item is-expanded expanded" >
+                <a href="/page/news" title="News" class="menu__link">News</a>
+                                <ul class="menu">
+                          <li class="menu__item is-active is-leaf leaf ">
+                <a href="/news/pressreleases" title="Press Releases" class="menu__link">Press Releases</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/news/speeches-statements" title="Speeches and Statements" class="menu__link">Speeches and Statements</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/spotlight" title="Spotlight Topics" class="menu__link">Spotlight Topics</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/news/upcoming-events" title="Upcoming Events" class="menu__link">Upcoming Events</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/news/sec-webcasts" title="Webcasts" class="menu__link">Webcasts</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/sec-in-the-news" title="SEC in the News" class="menu__link">SEC in the News</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/news/sec-videos" title="SEC Videos" class="menu__link">SEC Videos</a>
+              </li>
+                    <li class="menu__item is-active is-leaf leaf ">
+                <a href="/news/media-gallery" title="Media Gallery" class="menu__link">Media Gallery</a>
+              </li>
+        </ul>
+  
+              </li>
+        </ul>
+  
+
+  
+    </div>
+  </div>
+</div><nav role="navigation" aria-labelledby="block-secgov-account-menu-menu" id="block-secgov-account-menu">
+            
+  <h2 class="visually-hidden" id="block-secgov-account-menu-menu">User account menu</h2>
+  
+
+        
+              <ul id="user-menu" role="menubar" aria-hidden="false">
+        
+            <li class="login" role="menuitem">
+              <a href="/user/login" data-drupal-link-system-path="user/login">Log in</a>
+              </li>
+
+
+        </ul>
+  
+
+
+  </nav>
+
+  </div>
+
+
+      </div>
+    </div>
+
+          <div class="highlighted">
+        <aside role="complementary" class="message section clearfix">
+            <div class="region region-highlighted">
+    <div data-drupal-messages-fallback class="hidden"></div>
+
+  </div>
+
+
+        </aside>
+      </div>
+    
+    <div class="page-content">
+      <a id="main-content" tabindex="-1"></a>
+
+              
+      
+            <div id="home">
+          <div class="main-content region region-content">
+    <div id="block-secgov-content">
+  
+    
+      
+<article data-history-node-id="2431" class="node node--type-landing_page node--view-mode-full clearfix">
+  
+    
+
+  <div>
+    <div class="panel-display panel-1col clearfix" >
+
+                                                
+  	<section id="hero" class="hero">
+	<div class="block-region-hero"><div class="views-element-container block region__inner homepage_hero-block_1">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <div>
+
+  <div class="hp-hero view view-homepage-hero view-id-homepage_hero view-display-id-block_1 js-view-dom-id-homepage-hero-1">
+    
+    
+    
+
+    
+        
+    
+    
+<div>
+    
+<div id="flexslider-1" class="flexslider optionset-homepage-hero">
+ 
+<ul class="slides">
+    
+<li>
+    <div class="views-field views-field-body"><div class="field-content"><style type="text/css">
+<!--/*--><![CDATA[/* ><!--*/
+.slide-content-box {margin: 0;} @media only screen and (min-width: 768px) and (max-width: 1440px) { .slide-content-box {margin: 3rem 0 0 3rem;} } @media only screen and (min-width: 1440px) { .slide-content-box {margin:10% 0 0 15%;} }
+
+/*--><!]]>*/
+</style><div id="slide-2"><img alt="Building Communities" data-entity-type="file" src="/files/Bike_Family_Final-Hero_11-03-17.jpg" /><div class="slide-content-box">
+<div class="slide-headline"><!--<span class="headline-1">WE ARE THE</span>--><span class="headline-2">BUILDING COMMUNITIES</span></div>
+
+<div class="slide-description">
+<div class="slide-description-text">
+<p>The SEC protects investors in the $3.8 trillion municipal securities markets that cities and towns rely on to provide neighborhood schools, local libraries and hospitals, public parks, safe drinking water and so much more. </p>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+    </li>
+</ul>
+</div>
+
+</div>
+
+    
+        
+    
+        
+
+    
+  </div>
+
+</div>
+
+          </div>
+  </div>
+</div><div class="block sec_mission_block">
+  <div id="sec-mission">
+      <div class="hp-content">
+          <div class="hp-content-item odd">
+          <a href="#section-2" title="Go to We Inform and Protect Investors">
+              <div class="hp-content-icon">
+                  <img alt="Icon: We Inform and Protect Investors" src="/themes/custom/secgov/images/homepage/inform-icon-2x.png" />
+              </div>
+              <div class="hp-content-title">We Inform and Protect Investors</div>
+          </a>
+          </div>
+
+          <div class="hp-content-item even">
+          <a href="#section-3" title="Go to We Facilitate Capital Formation">
+              <div class="hp-content-icon">
+                  <img alt="Icon: We Facilitate Capital Formation" src="/themes/custom/secgov/images/homepage/cap-formation.png" />
+              </div>
+              <div class="hp-content-title">We Facilitate Capital Formation</div>
+          </a>
+          </div>
+
+          <div class="hp-content-item odd">
+          <a href="#section-4" title="Go to We Enforce Federal Securities Laws">
+              <div class="hp-content-icon">
+                  <img alt="Icon: We Enforce Federal Securities Laws" src="/themes/custom/secgov/images/homepage/enforce-icon-2x.png" />
+              </div>
+              <div class="hp-content-title">We Enforce Federal Securities Laws</div>
+          </a>
+          </div>
+
+          <div class="hp-content-item even">
+          <a href="#section-5" title="Go to We Regulate Securities Markets">
+              <div class="hp-content-icon">
+                  <img alt="Icon: We Regulate Securities Markets" src="/themes/custom/secgov/images/homepage/regulate-securities.png" />
+              </div>
+              <div class="hp-content-title">We Regulate Securities Markets</div>
+          </a>
+          </div>
+
+          <div class="hp-content-item odd">
+          <a href="#section-6" title="Go to We Provide Data">
+              <div class="hp-content-icon">
+                  <img alt="Icon: We Provide Data" src="/themes/custom/secgov/images/homepage/data-icon-2x.png" />
+              </div>
+              <div class="hp-content-title">We Provide Data</div>
+          </a>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+	</section>
+  
+  <section id="section-1" class="hp-section odd-row">
+  	<div class="panel-panel panel-col">
+    	<div></div>
+    	<div class="column colspan-8"><div class="block-region-section-1-left"><div class="views-element-container block region__inner homepage_featured_stories-sec_stories">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <div>
+
+  <div class="featured-content view view-homepage-featured-stories view-id-homepage_featured_stories view-display-id-sec_stories js-view-dom-id-homepage-featured-stories-1">
+    
+    
+    
+
+          <header>
+        <h3>SEC Stories</h3>
+      </header>
+    
+        
+    
+        <div class="views-view-grid horizontal cols-2 clearfix">
+            <div class="sec-stories-rows views-row clearfix row-1">
+                  <div class="sec-stories-col views-col col-1"><div class="views-field views-field-views-ifempty-1"><span class="field-content featured-graphic">  <a href="/page/sec-scholars-webinar-career-tips-strategies" hreflang="en">  <img class="image-style-featured-graphic" src="/files/styles/featured_graphic/public/2022-07/careers.jpg?itok=Y4F7qQ2H" width="320" height="219" alt="An animated drawing of a woman holding a briefcase and looking at a post with arrows pointing in different directions." loading="lazy" typeof="foaf:Image" />
+
+</a>
+</span></div><div class="views-field views-field-field-display-title"><div class="field-content">    <a href="/page/sec-scholars-webinar-career-tips-strategies" hreflang="en">SEC Scholars Webinar: Career Tips and Strategies</a>
+</div></div><div class="views-field views-field-field-alternate-title-secarticle"><div class="field-content"></div></div><div class="views-field views-field-field-teaser-text"><div class="field-content"></div></div><div class="views-field views-field-views-ifempty"><span class="field-content featured-content-teaser">The SEC&#039;s Atlanta Regional Office shared career tips and strategies with summer interns looking to land a job with the federal government. </span></div></div>
+                  <div class="sec-stories-col views-col col-2"><div class="views-field views-field-views-ifempty-1"><span class="field-content featured-graphic">  <a href="/page/sec-welcomes-caribbean-economist-and-advisor-caribbean-american-heritage-month" hreflang="en">  <img class="image-style-featured-graphic" src="/files/styles/featured_graphic/public/2022-07/CAHM_recap_image.png?itok=o03s7ksS" width="320" height="219" alt="Opening slate for Caribbean American Heritage Month event" loading="lazy" typeof="foaf:Image" />
+
+</a>
+</span></div><div class="views-field views-field-field-display-title"><div class="field-content">    <a href="/page/sec-welcomes-caribbean-economist-and-advisor-caribbean-american-heritage-month" hreflang="en">SEC Welcomes Caribbean Economist and Advisor for Caribbean American Heritage Month</a>
+</div></div><div class="views-field views-field-field-alternate-title-secarticle"><div class="field-content"></div></div><div class="views-field views-field-field-teaser-text"><div class="field-content"></div></div><div class="views-field views-field-views-ifempty"><span class="field-content featured-content-teaser">In celebration of Caribbean American Heritage Month, the SEC welcomed Marla Dukharan, an economist and expert advisor on the Caribbean.</span></div></div>
+              </div>
+      </div>
+
+    
+        
+    <div class="more-link"><a href="/page/sec-stories">More SEC Stories</a></div>
+
+        
+
+    
+  </div>
+
+</div>
+
+          </div>
+  </div>
+</div><div class="views-element-container block region__inner featured_video_media-block_2">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <div>
+
+  <div class="hp-featured-video view view-featured-video-media view-id-featured_video_media view-display-id-block_2 js-view-dom-id-featured-video-media-1">
+    
+    
+    
+
+          <header>
+        <h3>Featured Video</h3>
+      </header>
+    
+        
+    
+    
+
+
+        
+        
+  
+  
+  
+    <div class="views-row view-row-count-1 view-row-first">
+      <span class="views-field views-field-field-remote-video-url"><span class="field-content"><span class="field-content-video"><a href="/news/sec-videos/jaime-lizarraga-sworn-sec-commissioner" hreflang="en">  <img class="image-style-featured-video" src="/files/styles/featured_video_image/public/video_thumbnails/lqzgLkp_qS8.jpg?itok=lWlC9h2i" width="320" height="207" alt="" loading="lazy" typeof="Image" />
+
+</a></span>
+<span class="field-content-runtime"></span>
+</span></span><div class="views-field views-field-field-display-title"><h3 class="field-content">    <a href="/news/sec-videos/jaime-lizarraga-sworn-sec-commissioner" hreflang="en">Jaime Lizárraga Sworn In as SEC Commissioner</a>
+</h3></div><div class="views-field views-field-field-media-item-body"><div class="field-content"><p>Jaime Lizárraga was sworn into office as a Commissioner by Chair Gary Gensler. Commissioner Lizárraga was nominated by President Joseph Biden earlier this year and confirmed by the U.S. Senate on June 16.</p>
+</div></div>
+    </div>
+
+  
+
+    
+        
+    <div class="more-link"><a href="/news/sec-videos">More Videos</a></div>
+
+        
+
+    
+  </div>
+
+</div>
+
+          </div>
+  </div>
+</div>
+<div class="block custom-title-for-featured-spotlight">
+  
+    
+        <div class="body"><h3>Spotlight On</h3>
+</div>
+  </div>
+<div class="views-element-container block region__inner homepage_featured_spotlight-spotlight_topics">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <div>
+
+  <div class="featured-content view view-homepage-featured-spotlight view-id-homepage_featured_spotlight view-display-id-spotlight_topics js-view-dom-id-homepage-featured-spotlight-1">
+    
+    
+    
+
+          <header>
+        
+      </header>
+    
+        
+    
+    
+
+
+        
+        
+  
+  
+  
+    <div class="views-row promote view-row-count-1 view-row-first">
+      <div class="views-field views-field-views-ifempty-1"><span class="field-content featured-graphic">  <a href="/education/capitalraising" hreflang="en">  <img class="image-style-featured-graphic" src="/files/styles/featured_graphic/public/2022-07/smallbus-capraising-hub-thumbnail.jpg?itok=Eu1aIoXv" width="320" height="219" alt="Small Business Capital Raising Hub thumbnail graphic" loading="lazy" typeof="foaf:Image" />
+
+</a>
+</span></div><div class="views-field views-field-title"><h3 class="field-content"><a href="/education/capitalraising" hreflang="en">Capital Raising</a></h3></div><div class="views-field views-field-views-ifempty"><span class="field-content featured-content-teaser">The Office of the Advocate for Small Business Capital Formation and the Division of Corporation Finance’s Office of Small Business Policy launched an expanded Capital Raising Hub, which includes all of the SEC’s small business educational resources for entrepreneurs and their investors. </span></div>
+    </div>
+
+  
+
+    
+        
+    <div class="more-link"><a href="/spotlight">More Spotlight Topics</a></div>
+
+        
+
+    
+  </div>
+
+</div>
+
+          </div>
+  </div>
+</div></div></div>
+    	<div class="column colspan-4 last"><div class="block-region-section-1-right">
+<div class="block investor-alert-false-communications">
+  
+    
+        <div class="body"><div class="button-box"><a href="https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-alerts/beware-0" tabindex="-1"><span class="svg-icon svg-icon-lg">r</span> <span class="description">Investor Alert</span></a></div>
+
+<p class="padding-bottom-20">Read the SEC’s Investor Alert to protect yourself from phone messages, emails, and letters that may falsely appear to be from the SEC.</p>
+</div>
+  </div>
+<div class="block region__inner submit_a_tip_button_block">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <div class="button-box"><a href="/complaint/select.shtml"><span class="svg-icon svg-icon-lg">b</span> <span class="description">Submit a Tip or<br />
+File a Complaint</span></a></div>
+          </div>
+  </div>
+</div><div class="views-element-container block region__inner homepage_latest_news-homepage">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <div>
+
+  <div class="view view-homepage-latest-news view-id-homepage_latest_news view-display-id-homepage js-view-dom-id-homepage-latest-news-1">
+    
+    
+    
+
+          <header>
+        <h3>Latest News</h3>
+      </header>
+    
+        
+    
+    <div class="item-list">
+  
+  <ul>
+
+          <li><div class="views-field views-field-field-display-title"><div class="field-content">    <a href="/news/press-release/2022-131" hreflang="en">SEC Charges JPMorgan, UBS, and TradeStation for Deficiencies Relating to the Prevention of Customer Identity Theft</a>
+</div></div><div class="views-field views-field-field-publish-date"><div class="field-content">    <time datetime="2022-07-27T18:29:24Z" class="datetime">July 27, 2022</time>
+
+</div></div></li>
+          <li><div class="views-field views-field-field-display-title"><div class="field-content">    <a href="/news/press-release/2022-130" hreflang="en">SEC Small Business Advisory Committee to Discuss Liquidity Challenges for Investors in Small and Emerging Businesses</a>
+</div></div><div class="views-field views-field-field-publish-date"><div class="field-content">    <time datetime="2022-07-27T18:14:00Z" class="datetime">July 27, 2022</time>
+
+</div></div></li>
+          <li><div class="views-field views-field-field-display-title"><div class="field-content">    <a href="/news/press-release/2022-129" hreflang="en">SEC Files Multiple Insider Trading Actions Originating from the Market Abuse Unit's Analysis and Detection Center </a>
+</div></div><div class="views-field views-field-field-publish-date"><div class="field-content">    <time datetime="2022-07-25T14:40:00Z" class="datetime">July 25, 2022</time>
+
+</div></div></li>
+    
+  </ul>
+
+</div>
+
+    
+        
+    <div class="more-link"><a href="/page/news">More News</a></div>
+
+        
+
+    
+  </div>
+
+</div>
+
+          </div>
+  </div>
+</div>
+<div id="subscribe">
+  <div class="panel">
+    <h2>E-mail Updates</h2>
+    <p>Sign up for emails that will deliver SEC News direct to your inbox.</p>
+    <form accept-charset="UTF-8" action="https://public.govdelivery.com/accounts/USSEC/subscribers/qualify" id="GD-snippet-form" method="post" name="GD-snippet-form">
+      <input name="utf8" type="hidden" value="?"><input name="authenticity_token" type="hidden" value="rNLpZE6ui1SUXb98DT0ck6yojFmsiphJS29lz62OQ/k=">
+      <div class="row">
+        <div class="row collapse">
+          <label class="show-for-sr" for="email">E-mail Updates</label> <input id="email" name="email" onblur="if (this.value == '') {this.value = 'Email address'; this.style.color='#b1b1b1';} else if (this.value != '') {this.style.color='#000';}" onfocus="if(this.value == 'Email address') {this.value = ''; this.style.color='#000';}" title="Enter email address" type="text" value="Email address">
+        </div>
+      </div>
+      <div class="row">
+        <input class="form_button small button" name="commit" type="submit" value="Subscribe">
+      </div>
+    </form>
+    <script>
+      //<![CDATA[
+        var GOVDSNIPPET = function() {
+          var form  = document.getElementById('GD-snippet-form');
+          var typeSelect = form.getElementsByTagName('select')[0];
+          var getStyleType = function(type) {
+            return typeSelect.value === type ? 'block' : 'none';
+          };
+          var toggleType = function() {
+            form.getElementsByTagName('li')[2].style.display = getStyleType('email');
+            form.getElementsByTagName('li')[1].style.display = getStyleType('phone');
+          };
+          if (typeof typeSelect != "undefined" && typeSelect.addEventListener) {
+            typeSelect.addEventListener('change', toggleType);
+          } else if (typeof typeSelect != "undefined" && typeSelect.attachEvent)  {
+            typeSelect.attachEvent('onchange', toggleType);
+          }
+        }();
+      //]]>
+    </script>
+  </div>
+</div>
+</div></div>
+  	</div>
+  </section>
+
+  <section id="section-2" class="hp-section even-row">
+    <div class="panel-panel panel-col">
+    	<div><div class="block-region-section-2-title">
+<div class="block homepage-section-2-title">
+  
+    
+        <div class="body"><script type="text/javascript">
+jQuery(function($) {
+  $(document).ready(function() {
+    $(".homepage_featured_content-we_inform_and_protect_investors a").each(function(i) {
+      if ($(this).attr("href") == '/spotlight/affinity-fraud.shtml') {
+        $(this).attr("href", "https://www.fbi.gov/news/stories/beware-of-affinity-fraud");
+      }
+    });
+  });
+});
+</script>
+<h2><a name="section2"></a>We Inform and Protect Investors</h2></div>
+  </div>
+</div></div>
+      <div class="column colspan-4"><div class="block-region-section-2-left">
+<div class="block homepage-protect-your-money">
+  
+    
+        <div class="body"><h3>Protect Your Money!</h3>
+
+<p>Check out an investment professional's registration status and background at <a href="https://www.investor.gov">Investor.gov</a>.</p>
+
+<p class="section-3-button"><a href="check-your-investment-professional">Check Your<br />
+Investment<br />
+Professional</a></p></div>
+  </div>
+<div class="views-element-container block region__inner fast_answers_view-block_2">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <div>
+
+  <div class="fast-answers-day homepage-block view view-fast-answers-view view-id-fast_answers_view view-display-id-block_2 js-view-dom-id-fast-answers-view-1">
+    
+    
+    
+
+          <header>
+        <h3>Learn more</h3>
+      </header>
+    
+        
+    
+    <div class="item-list">
+  
+  <ul>
+
+          <li><div class="views-field views-field-field-display-title"><div class="field-content">  <a href="/fast-answers/answersadvancefeefraudhtm.html" hreflang="en">Advance Fee Fraud</a>
+</div></div></li>
+          <li><div class="views-field views-field-field-display-title"><div class="field-content">  <a href="/fast-answers/answersetfhtm.html" hreflang="en">Exchange-Traded Funds (ETFs)</a>
+</div></div></li>
+          <li><div class="views-field views-field-field-display-title"><div class="field-content">  <a href="/fast-answers/answers-form10khtm.html" hreflang="en">Form 10-K</a>
+</div></div></li>
+          <li><div class="views-field views-field-field-display-title"><div class="field-content">  <a href="/fast-answers/answersvarannhtm.html" hreflang="en">Variable Annuities</a>
+</div></div></li>
+    
+  </ul>
+
+</div>
+
+    
+        
+    
+          <footer>
+        <div class="more-link">
+<a href="https://www.investor.gov">Before you invest, Investor.gov</a>
+</div>
+      </footer>
+        
+
+    
+  </div>
+
+</div>
+
+          </div>
+  </div>
+</div></div></div>
+      <div class="column colspan-8 last"><div class="block-region-section-2-right"><div class="views-element-container block region__inner investor_alerts_bulletins_list_page-block_2">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <div>
+
+  <div class="investor-alerts-block dynamic-block view view-investor-alerts-bulletins-list-page view-id-investor_alerts_bulletins_list_page view-display-id-block_2 js-view-dom-id-investor-alerts-bulletins-list-page-1">
+    
+    
+    
+
+          <header>
+        <h3>Investor Alerts & Bulletins</h3>
+<p>The SEC's Office of Investor Education and Advocacy issues Investor Alerts & Bulletins as a service to investors. Investor Alerts typically warn investors about the latest investment frauds and scams. Investor Bulletins tend to educate investors about investment-related topics including the functions of the SEC.</p>
+      </header>
+    
+        
+    
+    <div class="item-list">
+  
+  <ul>
+
+          <li><div class="views-field views-field-field-display-title"><div class="field-content">  <a href="/oiea/investor-alerts-and-bulletins/broker-dealercustomer-arbitration-investor-bulletin" hreflang="en">Broker-Dealer/Customer Arbitration: Investor Bulletin</a>
+</div></div><div class="views-field views-field-field-publish-date"><div class="field-content">    <time datetime="2022-06-14T11:07:07Z" class="datetime">June 14, 2022</time>
+
+</div></div></li>
+          <li><div class="views-field views-field-field-display-title"><div class="field-content">  <a href="/oiea/investor-alerts-and-bulletins/extended-hours-trading-investor-bulletin" hreflang="en">Extended-Hours Trading: Investor Bulletin</a>
+</div></div><div class="views-field views-field-field-publish-date"><div class="field-content">    <time datetime="2022-06-06T18:28:48Z" class="datetime">June 6, 2022</time>
+
+</div></div></li>
+          <li><div class="views-field views-field-field-display-title"><div class="field-content">  <a href="/oiea/investor-alerts-and-bulletins/watch-out-fake-covid-19-claims-when-investing-investor-alert" hreflang="en">Watch Out for Fake COVID-19 Claims When Investing -- Investor Alert</a>
+</div></div><div class="views-field views-field-field-publish-date"><div class="field-content">    <time datetime="2022-05-31T15:34:08Z" class="datetime">May 31, 2022</time>
+
+</div></div></li>
+    
+  </ul>
+
+</div>
+
+    
+        
+    <div class="more-link"><a href="/investor/alerts">More Investor Alerts &amp; Bulletins</a></div>
+
+        
+
+    
+  </div>
+
+</div>
+
+          </div>
+  </div>
+</div><div class="views-element-container block region__inner homepage_featured_content-we_inform_and_protect_investors">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <div>
+
+  <div class="featured-content view view-homepage-featured-content view-id-homepage_featured_content view-display-id-we_inform_and_protect_investors js-view-dom-id-homepage-featured-content-1">
+    
+    
+    
+
+          <header>
+        
+      </header>
+    
+        
+    
+    
+
+
+        
+        
+  
+  
+  
+    <div class="views-row promote view-row-count-1 view-row-first">
+      <div class="views-field views-field-views-ifempty-1"><span class="field-content featured-graphic">  <a href="/ombudsman" hreflang="en">  <img class="image-style-featured-graphic" src="/files/styles/featured_graphic/public/2018-08/Ombudsman-graphic.jpg?itok=yGAnAidD" width="240" height="163" alt="Ombudsman thumbnail" loading="lazy" typeof="foaf:Image" />
+
+</a>
+</span></div><div class="views-field views-field-view-node"><h4 class="field-content featured-content-title"><a href="/ombudsman" hreflang="en">Ombudsman</a></h4></div><div class="views-field views-field-views-ifempty"><span class="field-content featured-content-teaser">The Ombudsman will listen to your inquiries, complaints, and issues, review the information you provide, and help identify procedures, options, and resources. The Ombudsman is also available to clarify certain SEC decisions, policies, and practices, and serve as an alternate channel of communication between retail investors and the SEC.</span></div>
+    </div>
+
+  
+
+    
+        
+    
+        
+
+    
+  </div>
+
+</div>
+
+          </div>
+  </div>
+</div></div></div>
+    </div>
+  </section>
+
+  <section id="section-3" class="hp-section odd-row">
+    <div class="panel-panel panel-col">
+      <div><div class="block-region-section-3-title">
+<div class="block homepage-section-3-title">
+  
+    
+        <div class="body"><h2>We Facilitate Capital Formation</h2>
+</div>
+  </div>
+</div></div>
+      <div class="column colspan-8"><div class="block-region-section-3-left"><div class="views-element-container block region__inner homepage_featured_content_we_facilitate_capital_formation-we_facilitate_capital_formation">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <div>
+
+  <div class="featured-content view view-homepage-featured-content-we-facilitate-capital-formation view-id-homepage_featured_content_we_facilitate_capital_formation view-display-id-we_facilitate_capital_formation js-view-dom-id-homepage-featured-content-we-facilitate-capital-formation-1">
+    
+    
+    
+
+    
+        
+    
+        <div class="views-view-grid vertical cols-1 clearfix">
+            <div class="views-col clearfix col-1" style="width: 100%;">
+                  <div class="views-row row-1"><div class="views-field views-field-views-ifempty-1"><span class="field-content featured-graphic">  <a href="/finhub" hreflang="en">  <img class="image-style-featured-graphic" src="/files/styles/featured_graphic/public/2019-04/finhub-featured3.jpg?itok=SgaZis6-" width="320" height="217" alt="FinHub featured graphic" loading="lazy" typeof="foaf:Image" />
+
+</a>
+</span></div><div class="views-field views-field-title"><h3 class="field-content"><a href="/finhub" hreflang="en">FinHub</a></h3></div><div class="views-field views-field-views-ifempty"><span class="field-content featured-content-teaser">The SEC’s FinHub facilitates our active engagement with innovators, developers, and entrepreneurs of financial technology.</span></div></div>
+                  <div class="views-row row-2"><div class="views-field views-field-views-ifempty-1"><span class="field-content featured-graphic">  <a href="/education/smallbusiness" hreflang="en">  <img class="image-style-featured-graphic" src="/files/styles/featured_graphic/public/2017-11/SMB-thumbnail.jpg.jpeg?itok=E-7yfxK6" width="320" height="178" alt="Small Business featured graphic" loading="lazy" typeof="foaf:Image" />
+
+</a>
+</span></div><div class="views-field views-field-title"><h3 class="field-content"><a href="/education/smallbusiness" hreflang="en">Small Business</a></h3></div><div class="views-field views-field-views-ifempty"><span class="field-content featured-content-teaser">Check out our new Small Biz site, with info to help companies that want to raise capital.</span></div></div>
+              </div>
+      </div>
+
+    
+        
+    
+        
+
+    
+  </div>
+
+</div>
+
+          </div>
+  </div>
+</div></div></div>
+      <div class="column colspan-4 last"><div class="block-region-section-3-right"><div class="views-element-container block region__inner homepage_recent_news_we_facilitate_capital_formation-recent_capital_formation_news">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <div>
+
+  <div class="featured-content view view-homepage-recent-news-we-facilitate-capital-formation view-id-homepage_recent_news_we_facilitate_capital_formation view-display-id-recent_capital_formation_news js-view-dom-id-homepage-recent-news-we-facilitate-capital-formation-1">
+    
+    
+    
+
+    
+        
+    
+    <div class="item-list">
+  
+  <ul class="cap-formation">
+
+          <li><div class="views-field views-field-field-display-title"><div class="field-content">    <a href="/dera/data/crowdfunding-offerings-data-sets" hreflang="en">Crowdfunding Offerings Data Sets</a>
+</div></div><div class="views-field views-field-views-ifempty"><span class="field-content featured-content-teaser">The SEC’s Crowdfunding Offerings Data Sets provide a quarterly look at offerings that rely on the Regulation Crowdfunding</span></div></li>
+    
+  </ul>
+
+</div>
+
+    
+        
+    
+        
+
+    
+  </div>
+
+</div>
+
+          </div>
+  </div>
+</div></div></div>
+    </div>
+  </section>
+
+  <section id="section-4" class="hp-section even-row">
+    <div class="panel-panel panel-col">
+      <div><div class="block-region-section-4-title">
+<div class="block homepage-section-6-title">
+  
+    
+        <div class="body"><h2>We Enforce Federal Securities Laws</h2></div>
+  </div>
+</div></div>
+      <div class="column colspan-4"><div class="block-region-section-4-left"><div class="block region__inner cyber_enforcement_actions_button_block">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <div class="button-box"><a href="/spotlight/cybersecurity-enforcement-actions"><span class="svg-icon svg-icon-lg">a</span> <span class="description">Cyber<br />
+Enforcement Actions</span></a></div>
+          </div>
+  </div>
+</div><div class="block region__inner administrative_proceedings_button_block">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <div class="button-box"><a href="/litigation/apdocuments.shtml"><span class="svg-icon svg-icon-lg">o</span> <span class="description">Administrative<br />
+Proceeding<br />Documents</span></a></div>
+          </div>
+  </div>
+</div><div class="views-element-container block region__inner homepage_featured_content-we_enforce_federal_securities_laws">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <div>
+
+  <div class="featured-content view view-homepage-featured-content view-id-homepage_featured_content view-display-id-we_enforce_federal_securities_laws js-view-dom-id-homepage-featured-content-2">
+    
+    
+    
+
+          <header>
+        
+      </header>
+    
+        
+    
+    
+
+
+        
+        
+  
+  
+  
+    <div class="views-row promote view-row-count-1 view-row-first">
+      <div class="views-field views-field-views-ifempty-1"><span class="field-content featured-graphic">  <a href="/whistleblower" hreflang="en">  <img class="image-style-featured-graphic" src="/files/styles/featured_graphic/public/2017-08/whistleblower-spotlight.png?itok=Wb-zmVw1" width="303" height="151" alt="Whistleblower graphic" loading="lazy" typeof="foaf:Image" />
+
+</a>
+</span></div><div class="views-field views-field-view-node"><h4 class="field-content featured-content-title"><a href="/whistleblower" hreflang="en">Office of the Whistleblower</a></h4></div><div class="views-field views-field-views-ifempty"><span class="field-content featured-content-teaser">Submit a tip, learn about the program, or claim an award.</span></div>
+    </div>
+
+  
+
+    
+        
+    
+        
+
+    
+  </div>
+
+</div>
+
+          </div>
+  </div>
+</div></div></div>
+      <div class="column colspan-8 last"><div class="block-region-section-4-right"><div class="block region__inner litigation_releases_block">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <h2>Latest Federal Court Actions</h2><h3>Litigation Releases</h3><ul><li><a href="https://www.sec.gov/litigation/litreleases/2022/lr25454.htm">Frank Okunak</a><span>Jul 27, 2022</span></li><li><a href="https://www.sec.gov/litigation/litreleases/2022/lr25453.htm">Todd Lahr and Thomas Megas</a><span>Jul 26, 2022</span></li><li><a href="https://www.sec.gov/litigation/litreleases/2022/lr25452.htm">Alexandra Robert, Chalala Academy LLC</a><span>Jul 27, 2022</span></li><li><a href="https://www.sec.gov/litigation/litreleases/2022/lr25451.htm">Seth Markin and Brandon Wong</a><span>Jul 26, 2022</span></li><li><a href="https://www.sec.gov/litigation/litreleases/2022/lr25450.htm">Amit Bhardwaj, et al.</a><span>Jul 26, 2022</span></li></ul><div class="more-link"><a href="//www.sec.gov/litigation/litreleases.shtml">More Litigation Releases</a></div>
+          </div>
+  </div>
+</div><div class="block region__inner administrative_proceedings_block">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <h2>Latest Administrative Proceedings</h2><h3>Administrative Releases</h3><ul><li><a href="https://www.sec.gov/litigation/admin/2022/34-95369.pdf">TradeStation Securities, Inc.</a><span>Jul 27, 2022</span></li><li><a href="https://www.sec.gov/litigation/admin/2022/34-95368.pdf">UBS Financial Services Inc.</a><span>Jul 27, 2022</span></li><li><a href="https://www.sec.gov/litigation/admin/2022/34-95367.pdf">J.P. Morgan Securities LLC</a><span>Jul 27, 2022</span></li><li><a href="https://www.sec.gov/litigation/admin/2022/ia-6072.pdf">Christopher W. Burns</a><span>Jul 25, 2022</span></li><li><a href="https://www.sec.gov/litigation/admin/2022/34-95351.pdf">Mesirow Financial Investment Management, Inc.</a><span>Jul 22, 2022</span></li></ul><div class="more-link"><a href="//www.sec.gov/litigation/admin.shtml">More Administrative Releases</a></div>
+          </div>
+  </div>
+</div></div></div>
+    </div>
+  </section>
+
+  <section id="section-5" class="hp-section odd-row">
+    <div class="panel-panel panel-col">
+      <div><div class="block-region-section-5-title">
+<div class="block homepage-section-5-title">
+  
+    
+        <div class="body"><h2>We Regulate Securities Markets</h2></div>
+  </div>
+</div></div>
+      <div class="column colspan-8"><div class="block-region-section-5-left"><div class="views-element-container block region__inner homepage_featured_content-we_regulate_securities_markets">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <div>
+
+  <div class="featured-content view view-homepage-featured-content view-id-homepage_featured_content view-display-id-we_regulate_securities_markets js-view-dom-id-homepage-featured-content-3">
+    
+    
+    
+
+          <header>
+        
+      </header>
+    
+        
+    
+    
+
+
+        
+        
+  
+  
+  
+    <div class="views-row promote view-row-count-1 view-row-first">
+      <div class="views-field views-field-views-ifempty-1"><span class="field-content featured-graphic">  <a href="/tell-us" hreflang="en">  <img class="image-style-featured-graphic" src="/files/styles/featured_graphic/public/2018-05/homepage-thumbnailv2.jpg?itok=fdf78H5T" width="320" height="217" alt="Tell us about your investor experience graphic " loading="lazy" typeof="foaf:Image" />
+
+</a>
+</span></div><div class="views-field views-field-view-node"><h4 class="field-content featured-content-title"><a href="/tell-us" hreflang="en">Tell us about your experience</a></h4></div><div class="views-field views-field-views-ifempty"><span class="field-content featured-content-teaser">Making Wall Street work for Main Street means getting your input. The U.S. Securities and Exchange Commission wants to hear from you! We want your input on proposals and other pertinent issues and topics. We want to know what information is important to you, the investor.</span></div>
+    </div>
+
+  
+
+    
+        
+    
+        
+
+    
+  </div>
+
+</div>
+
+          </div>
+  </div>
+</div></div></div>
+      <div class="column colspan-4 last"><div class="block-region-section-5-right">
+<div class="block proposed-and-final-rules-and-credit-rating-agencies-buttons-block">
+  
+    
+        <div class="body"><style type="text/css">.button-box a > .fa {
+  background-color: transparent; color:#273a56; font-size: 400%;
+}
+
+.button-box a:hover > .fa, 
+.button-box a:focus > .fa {
+  color: #FFC057;
+}
+</style>
+<div class="button-box margin-bottom-10"><a href="/files/nrsro-summary-report-2020.pdf"><span class="fa fa-file-text">&nbsp;</span><span class="description">Credit Rating Agencies</span></a></div>
+
+<div class="button-box"><a href="/rules/proposed.shtml"><span class="svg-icon svg-icon-lg">=</span> <span class="description">SEC Proposed Rules</span></a></div>
+
+<div class="button-box"><a href="/rules/final.shtml"><span class="svg-icon svg-icon-lg">h</span> <span class="description">View Final Rules</span></a></div>
+</div>
+  </div>
+</div></div>
+    </div>
+  </section>
+
+  <section id="section-6" class="hp-section even-row">
+    <div class="panel-panel panel-col">
+      <div><div class="block-region-section-6-title">
+<div class="block homepage-section-4-title">
+  
+    
+        <div class="body"><h2>We Provide Data</h2>
+</div>
+  </div>
+</div></div>
+      <div class="column colspan-4"><div class="block-region-section-6-left"><div class="block region__inner developer_resources_block">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <div class="developer">
+          <h3>Developer Resources</h3>
+          <p>Check out updates on the SEC open data program, including best practices that
+          make it more efficient to download data.</p>
+          <p class="xbrl-link-box"><a href="/developer">View Developer Resources</a></p>
+        </div>
+          </div>
+  </div>
+</div>
+<div class="block homepage-money-market-fund-statistics-block">
+  
+    
+        <div class="body"><div><a href="/divisions/investment/mmf-statistics.shtml"><img src="/files/moneymarket_0.jpg" style="margin-bottom:1rem;" /></a>
+<h4><a href="/divisions/investment/mmf-statistics.shtml">Money Market Fund Statistics</a></h4>
+
+<p>Our Investment Management Analytics Office released an updated Money Market Fund Statistics report. The report reflects staff’s compilation and analysis of data reported to the Commission on Form N-MFP.</p>
+</div>
+</div>
+  </div>
+</div></div>
+      <div class="column colspan-8 last"><div class="block-region-section-6-right"><div class="views-element-container block region__inner data_list_page-block_1">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <div>
+
+  <div class="view view-data-list-page view-id-data_list_page view-display-id-block_1 js-view-dom-id-data-list-page-1">
+    
+    
+    
+
+          <header>
+        <h3>Latest Data Sets</h3>
+      </header>
+    
+        
+    
+    <div class="item-list">
+  
+  <ul>
+
+          <li><div class="views-field views-field-field-display-title"><div class="field-content">    <a href="/help/foiadocsinvafoiahtm.html" hreflang="en">Information About Registered Investment Advisers and Exempt Reporting Advisers</a>
+</div></div><div class="views-field views-field-field-description-abstract"><div class="field-content">The Investment Adviser Information Reports&#039; data is collected from electronic submissions of Form ADV by investment adviser firms to the Investment Adviser Registration Depository (IARD) system. </div></div><div class="views-field views-field-field-date"><span class="views-label views-label-field-date">Updated</span><span class="field-content">    <time datetime="2022-07-01T12:35:00Z" class="datetime">July 2022</time>
+
+</span></div></li>
+          <li><div class="views-field views-field-field-display-title"><div class="field-content">    <a href="/dera/data/financial-statement-and-notes-data-set.html" hreflang="en">Financial Statement and Notes Data Sets</a>
+</div></div><div class="views-field views-field-field-description-abstract"><div class="field-content">The data sets provide the text and detailed numeric information in all financial statements and their notes extracted from exhibits to corporate financial reports filed with the Commission using eXtensible Business Reporting Language (XBRL). </div></div><div class="views-field views-field-field-date"><span class="views-label views-label-field-date">Updated</span><span class="field-content">    <time datetime="2022-06-30T17:54:56Z" class="datetime">June 2022</time>
+
+</span></div></li>
+    
+  </ul>
+
+</div>
+
+    
+        
+    <div class="more-link"><a href="/data">More Data Sets</a></div>
+
+        
+
+    
+  </div>
+
+</div>
+
+          </div>
+  </div>
+</div><div class="views-element-container block region__inner homepage_featured_content-we_provide_data">
+  <div class="block--menu-block">
+    <div class="menu-block-wrapper menu-name-main-menu">
+      
+            
+              <div>
+
+  <div class="featured-content view view-homepage-featured-content view-id-homepage_featured_content view-display-id-we_provide_data js-view-dom-id-homepage-featured-content-4">
+    
+    
+    
+
+          <header>
+        
+      </header>
+    
+        
+    
+    
+
+
+        
+        
+  
+  
+  
+    <div class="views-row promote view-row-count-1 view-row-first">
+      <div class="views-field views-field-views-ifempty-1"><span class="field-content featured-graphic">  <a href="/sec-enhances-access-financial-disclosure-data" hreflang="en">  <img class="image-style-featured-graphic" src="/files/styles/featured_graphic/public/2021-09/api-sec-homepage-graphic.jpg?itok=JUOzqOZ8" width="319" height="170" alt="API home page thumbnail " loading="lazy" typeof="foaf:Image" />
+
+</a>
+</span></div><div class="views-field views-field-view-node"><h4 class="field-content featured-content-title"><a href="/sec-enhances-access-financial-disclosure-data" hreflang="en">SEC Enhances Access to Financial Disclosure Data</a></h4></div><div class="views-field views-field-views-ifempty"><span class="field-content featured-content-teaser">The SEC has released Application Programming Interfaces (APIs) that aggregate financial statement data, making corporate disclosures quicker and easier for developers and third-party services to use. APIs will allow developers to create web or mobile apps that directly serve retail investors.</span></div>
+    </div>
+
+  
+
+    
+        
+    
+        
+
+    
+  </div>
+
+</div>
+
+          </div>
+  </div>
+</div></div></div>
+    </div>
+  </section>
+
+</div>
+
+  </div>
+</article>
+
+  </div>
+
+  </div>
+
+
+      </div>
+      
+    </div>
+
+          <footer class="page-footer">        
+                  <div class="page-footer-top">
+              <div class="region region-footer-top">
+    
+<div id="block-globalfooterstayconnectedfooter" class="block stay-connected-footer">
+  
+    
+        <div class="body"><p class="data-exempt" id="stay-connected-footer"><span>STAY CONNECTED</span><br class="new-line" />
+<a href="/news/socialmedia.shtml"><span class="fa fa-lg fa-twitter"><span class="visually-hidden">1</span></span> <span class="hide-for-small">Twitter</span></a> <a href="/news/socialmedia.shtml"><span class="fa fa-lg fa-facebook"><span class="visually-hidden">2</span></span> <span class="hide-for-small">Facebook</span></a> <a href="/about/secrss.shtml"><span class="fa fa-lg fa-rss"><span class="visually-hidden">3</span></span><span class="hide-for-small">RSS</span></a> <a href="/news/socialmedia.shtml"><span class="fa fa-lg fa-youtube-play"><span class="visually-hidden">4</span></span><span class="hide-for-small">YouTube</span></a><br class="hide-for-medium-up" />
+<a href="/news/socialmedia.shtml"><span class="fa fa-lg fa-linkedin"><span class="visually-hidden">6</span></span><span class="hide-for-small">LinkedIn</span></a> <!--<a href="//www.pinterest.com/secgov"><span class="fa fa-lg fa-pinterest-p"><span class="visually-hidden">7</span></span> <span class="hide-for-small">Pinterest</span></a>--> <a href="//public.govdelivery.com/accounts/USSEC/subscriber/new"><span class="fa fa-lg fa-envelope"><span class="visually-hidden">8</span></span> <span class="hide-for-small">Email Updates</span> </a></p>
+</div>
+  </div>
+
+  </div>
+
+
+          </div>
+                
+        <div class="page-footer-cols">
+          <div>
+    <nav role="navigation" aria-labelledby="block-aboutthesec-menu" id="block-aboutthesec">
+            
+  <h2 id="block-aboutthesec-menu">About The SEC</h2>
+  
+
+        
+              <ul id="section-menu" class="menu">
+              <li class="menu__item is-active is-leaf leaf item-budget-&amp;-performance">
+        <a href="/about/offices/ofm/ofm-documents.htm" class="menu__link" data-drupal-link-system-path="node/111606">Budget &amp; Performance</a>
+              </li>
+
+          <li class="menu__item is-active is-leaf leaf item-careers">
+        <a href="/careers" class="menu__link" data-drupal-link-system-path="node/41311">Careers</a>
+              </li>
+
+          <li class="menu__item is-active is-leaf leaf item-commission-votes">
+        <a href="/about/commission-votes.shtml" class="menu__link" data-drupal-link-system-path="node/111231">Commission Votes</a>
+              </li>
+
+          <li class="menu__item is-active is-leaf leaf item-contact">
+        <a href="/contact-information/sec-directory" class="menu__link" data-drupal-link-system-path="node/102846">Contact</a>
+              </li>
+
+          <li class="menu__item is-active is-leaf leaf item-contracts">
+        <a href="/page/oacqsectionlanding" class="menu__link" data-drupal-link-system-path="node/3841">Contracts</a>
+              </li>
+
+          <li class="menu__item is-active is-leaf leaf item-data-resources">
+        <a href="/sec-data-resources" class="menu__link" data-drupal-link-system-path="node/191566">Data Resources</a>
+              </li>
+
+        </ul>
+  
+
+
+
+
+
+  </nav>
+<nav role="navigation" aria-labelledby="block-governmenttransparency-menu" id="block-governmenttransparency">
+            
+  <h2 id="block-governmenttransparency-menu">Transparency</h2>
+  
+
+        
+              <ul id="section-menu" class="menu">
+              <li class="menu__item is-active is-leaf leaf item-accessibility-&amp;-disability">
+        <a href="/disability/sec_access" class="menu__link" data-drupal-link-system-path="node/111766">Accessibility &amp; Disability</a>
+              </li>
+
+          <li class="menu__item is-active is-leaf leaf item-diversity-&amp;-inclusion">
+        <a href="/diversity-and-inclusion-sec" class="menu__link" data-drupal-link-system-path="node/279356">Diversity &amp; Inclusion</a>
+              </li>
+
+          <li class="menu__item is-active is-leaf leaf item-foia">
+        <a href="/page/office-foia-services" class="menu__link" data-drupal-link-system-path="node/41166">FOIA</a>
+              </li>
+
+          <li class="menu__item is-active is-leaf leaf item-inspector-general">
+        <a href="/oig" class="menu__link" data-drupal-link-system-path="node/41456">Inspector General</a>
+              </li>
+
+          <li class="menu__item is-active is-leaf leaf item-no-fear-act-&amp;-eeo-data">
+        <a href="/page/eeosectionlanding" class="menu__link" data-drupal-link-system-path="node/3781">No FEAR Act &amp; EEO Data</a>
+              </li>
+
+          <li class="menu__item is-active is-leaf leaf item-ombudsman">
+        <a href="/ombudsman" class="menu__link" data-drupal-link-system-path="node/96081">Ombudsman</a>
+              </li>
+
+          <li class="menu__item is-active is-leaf leaf item-whistleblower-protection">
+        <a href="/whistleblower" class="menu__link" data-drupal-link-system-path="node/99851">Whistleblower Protection</a>
+              </li>
+
+        </ul>
+  
+
+
+
+
+
+  </nav>
+<nav role="navigation" aria-labelledby="block-otherwebsites-menu" id="block-otherwebsites">
+            
+  <h2 id="block-otherwebsites-menu">Websites</h2>
+  
+
+        
+              <ul id="section-menu" class="menu">
+              <li class="menu__item is-active is-leaf leaf item-investor.gov">
+        <a href="https://www.investor.gov" class="menu__link">Investor.gov</a>
+              </li>
+
+          <li class="menu__item is-active is-leaf leaf item-related-sites">
+        <a href="/links" class="menu__link" data-drupal-link-system-path="node/100276">Related Sites</a>
+              </li>
+
+          <li class="menu__item is-active is-leaf leaf item-usa.gov">
+        <a href="https://www.usa.gov" class="menu__link">USA.gov</a>
+              </li>
+
+        </ul>
+  
+
+
+
+
+
+  </nav>
+<nav role="navigation" aria-labelledby="block-siteinformation-menu" id="block-siteinformation">
+            
+  <h2 id="block-siteinformation-menu">Site Information</h2>
+  
+
+        
+              <ul id="section-menu" class="menu">
+              <li class="menu__item is-active is-leaf leaf item-plain-writing">
+        <a href="/plainwriting.shtml" class="menu__link" data-drupal-link-system-path="node/111701">Plain Writing</a>
+              </li>
+
+          <li class="menu__item is-active is-leaf leaf item-privacy-&amp;-security">
+        <a href="/privacy" class="menu__link" data-drupal-link-system-path="node/111706">Privacy &amp; Security</a>
+              </li>
+
+          <li class="menu__item is-active is-leaf leaf item-site-map">
+        <a href="/sitemap.shtml" class="menu__link" data-drupal-link-system-path="node/111831">Site Map</a>
+              </li>
+
+        </ul>
+  
+
+
+
+
+
+  </nav>
+
+  </div>
+
+
+        </div>
+      </footer>
+      </div>
+</div>
+</div>
+
+
+  </div>
+
+    
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-circle-up" aria-hidden="true"></i>Return to Top</a>
+
+    <div class="overlap">
+  <!-- Subscribe link, RSS, Email -->
+  <div id="addthis-icons-508" class="visibly-hidden">
+    <div class="addthis-wrapper">
+      <div class="appIconsDetail hide">
+        <div class="addthis_toolbox addthis_default_style hide-for-small">
+          <a class="addthis_button_print at300b" title="Print Page" href="#">
+            <span class="fa fa-print"></span>
+          </a>
+          <a class="addthis_button_facebook at300b" title="Share on Facebook" href="#">
+            <span class="fa fa-facebook"></span>
+          </a>
+          <a class="addthis_button_twitter at300b" title="Tweet Page" href="#">
+            <span class="fa fa-twitter"></span>
+          </a>
+          <a class="addthis_button_mailto at300b" target="_blank" title="Email Page" href="#">
+            <span class="fa fa-envelope"></span>
+          </a>
+          <a class="addthis_button_compact at300m" href="#" title="More Sharing Options">
+            <span class="fa fa-plus"></span>
+          </a>
+        <div class="atclear"></div>
+      </div>
+      <div class="addthis_toolbox hide">
+        <a class="addthis_button_facebook at300b" title="Share on Facebook" href="#">
+          <span class="fa fa-facebook"></span>
+        </a>
+        <a class="addthis_button_twitter at300b" title="Tweet Page" href="#">
+          <span class="fa fa-twitter"></span>
+        </a>
+        <a class="addthis_button_mailto at300b" target="_blank" title="Email Page" href="#">
+          <span class="fa fa-envelope"></span>
+        </a>
+      </div>
+      <div class="atclear"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <script src="/files/js/js_j3jWwzLmiSS9kgOANhwswDfrGO5fD6lc0BIWHHlW3fw.js"></script>
+<script src="/themes/custom/secgov/js/third-party/addthis_widget.js?rfqc01" async></script>
+<script src="/files/js/js_jliu3pz-TU-0AAa966MZ0LObrcVQr_wd6SPNs6QsHTY.js"></script>
+<script src="/modules/custom/sec_custom_libraries/components/scripts/moment.min.js?rfqc01"></script>
+<script src="/files/js/js_qXHf21IRwkcYn6GSmjHt5GlOba5Zs3kwo6bNNU-dx00.js"></script>
+
+
+  <script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"32edb8f179","applicationID":"436723953","transactionName":"ZQZSMBQEXxZZARJeXlxMcQcSDF4LFyYUQkFTD2wKCQFUOXsNCENDXQ9cARQ5fwpcBzBeVEUgXwoSF14JVAcUGg9EClUT","queueTime":0,"applicationTime":1045,"atts":"SUFRRlweTBg=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+  </html>
