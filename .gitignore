@@ -1,6 +1,5 @@
 # Big files stored as zip
-Edhec/C4/Data/uber-pickups-in-new-york-city/uber-raw-data-janjune-15.csvs
-
+Edhec/C4/Data/uber-pickups-in-new-york-city/uber-raw-data-janjune-15.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
