@@ -42,7 +42,7 @@ class SingleTimeSeries:
         # See also https://github.com/ranaroussi/yfinance/issues/1333
         self.data.index = self.data.index.tz_localize(None).to_period(self.frequency.name)
         self.data['Return'] = self.data[['Close']].pct_change()
-        self.data.dropna()
+        #self.data.dropna(inplace=True)
         return self.data
     
     def stats(self, rf=0):
