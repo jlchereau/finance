@@ -1,0 +1,14 @@
+## Runtime
+beautifulsoup4
+jinja2
+matplotlib
+numpy
+pandas
+requests
+statsmodels
+tqdm
+yfinance
+
+## Testing
+pytest
+talib
