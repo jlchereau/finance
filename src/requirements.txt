@@ -1,14 +1,19 @@
 ## Runtime
 beautifulsoup4
+bt
+ffn
+# fredapi
 jinja2
 matplotlib
 numpy
 pandas
+# PyPortfolioOpt
 requests
 statsmodels
 tqdm
 yfinance
 
 ## Testing
+ipywidgets
 pytest
 talib
