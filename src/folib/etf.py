@@ -2,8 +2,7 @@
 
 import pandas as pd
 
-from .utils import AssetType
-from .asset import Asset
+from .asset import Asset, AssetType
 
 
 class ETF(Asset):

@@ -3,18 +3,9 @@ Utility constants and functions
 """
 
 
-from enum import Enum
+import numpy as np
 import pandas as pd
-import yfinance as yf
-from .market import get_risk_free_rate, get_market_risk_premium
-
-
-class AssetType(Enum):
-    """
-    Asset Type
-    """
-    EQUITY = 0
-    ETF = 1
+import statsmodels.api as sm
 
 
 def get_sma(data: pd.Series, window: int = 14) -> pd.Series:
@@ -64,87 +55,81 @@ def get_bollinger_bands(data: pd.Series, window: int = 20) -> pd.DataFrame:
         .rename(columns={0: 'upper', 1: 'middle', 2: 'lower'})
 
 
-def get_cagr(data: pd.Series) -> float:
+def get_cagr(data: pd.Series) -> float | None:
     """
     Compound annual growth rate
     """
     data.index = pd.to_datetime(data.index)
     data = data.astype(float).sort_index().dropna()
-    assert len(data) > 1, 'Not enough data to calculate CAGR'
+    if len(data) < 2:  # Not enough data to calculate CAGR
+        return None
     start_value = data.iloc[0]
     end_value = data.iloc[-1]
     num_years = len(data) - 1
     return (end_value / start_value) ** (1 / num_years) - 1
 
 
-def get_weighted_average_cost_of_capital(
-        yahoo_ticker: yf.Ticker,
-        risk_free_rate: float = get_risk_free_rate(),
-        market_risk_premium: float = get_market_risk_premium()
-        ) -> float:
+def get_avg_pct_change(data: pd.Series) -> float | None:
     """
-    Weighted average cost of capital
+    Average percentage change
     """
-    assert yahoo_ticker.info['quoteType'] == 'EQUITY', \
-        f'{yahoo_ticker.info['symbol']} is not equity!'
+    data.index = pd.to_datetime(data.index)
+    data = data.astype(float).sort_index().dropna()
+    if len(data) < 2:  # Not enough data for pct_change
+        return None
+    return data.pct_change().mean()
 
-    # Market Cap as proxy for Equity Value
-    market_cap = yahoo_ticker.info['previousClose'] * \
-        yahoo_ticker.info['sharesOutstanding']
 
-    # Total Debt (Average over past 3 years)
-    total_debt = yahoo_ticker.balance_sheet.loc['Total Debt'] \
-        .values[:3].mean()  # average of last 3 years
-    net_debt = yahoo_ticker.balance_sheet.loc['Net Debt'] \
-        .values[:3].mean()
-
-    # Beta (Assuming beta value is stable,
-    # but could average across historical estimates if available)
-    beta = yahoo_ticker.info['beta']
-
-    # Tax Rate - Average of last 3 years
-    tax_rate = yahoo_ticker.income_stmt.loc['Tax Rate For Calcs'] \
-        .values[:3].mean()
-
-    # Interest Expense - Average over past 3 years
-    interest_expense = yahoo_ticker.income_stmt.loc['Interest Expense'] \
-        .values[:3].mean()
-
-    # Cost of Debt (after-tax, using average interest expense and total debt)
-    cost_of_debt = (interest_expense / total_debt) * (1 - tax_rate) \
-        if total_debt else 0
-
-    # Cost of Equity (CAPM)
-    cost_of_equity = risk_free_rate + beta * market_risk_premium
-
-    # Debt and Equity Weights (averaged with Net Debt over past 3 years)
-    equity_weight = market_cap / (market_cap + net_debt)
-    debt_weight = net_debt / (market_cap + net_debt)
-
-    # WACC Calculation
-    wacc = (equity_weight * cost_of_equity) + (debt_weight * cost_of_debt)
-    return wacc
+def get_linear_forecast(data: pd.Series, years_forecast: int = 5) -> pd.Series:
+    """
+    Linear forecast (data is annual)
+    """
+    x = data.index.year.values
+    y = data.values
+    x = sm.add_constant(x)
+    model = sm.OLS(y, x).fit()
+    forecast_x = np.arange(data.index.year.max() + 1,
+                           data.index.year.max() + years_forecast + 1)
+    # years_forecast=1 does not work
+    # https://stackoverflow.com/questions/48514035/ols-predict-one-value-array
+    forecast_x = sm.add_constant(forecast_x)
+    forecast_y = model.predict(forecast_x)
+    forecast_index = pd.date_range(start=data.index[-1]
+                                   + pd.DateOffset(years=1),
+                                   periods=years_forecast, freq='YE')
+    return pd.Series(forecast_y, index=forecast_index)
 
 
 def get_intrinsinc_value(
-        yahoo_ticker: yf.Ticker,
-        growth_rate: float = 0.05,
-        discount_rate: float = get_risk_free_rate(),
+        fcf: pd.Series,
+        risk_free_rate: float = 0.03,
+        wacc: float = 0.08,
+        years_forecast: int = 5
         ) -> float:
     """
     Intrinsic value
     """
-    assert yahoo_ticker.info['quoteType'] == 'EQUITY', \
-        f'{yahoo_ticker.info['symbol']} is not equity!'
+    # Forecast Free Cash Flows for the next years_forecast (5 to 10 years)
+    fcf_forecast = get_linear_forecast(fcf, years_forecast)
 
-    # Current market price
-    current_price = yahoo_ticker.info['previousClose']
+    # Discount the Free Cash Flows to the present value
+    # Note: npv from numpy_financial starts with current year
+    # which is not part of forecasts so we compute it ourselves
+    discounted_fcf = 0
+    for i in range(1, years_forecast + 1):
+        discounted_fcf += fcf_forecast.iloc[i-1] / (1 + wacc) ** i
 
-    # Number of years to project
-    years = 10
+    # Calculate the terminal value using the perpetuity method
+    terminal_value = fcf_forecast.iloc[-1] * (1 + risk_free_rate) \
+        / (wacc - risk_free_rate)
 
-    # Intrinsic value calculation
-    intrinsic_value = current_price * \
-        (1 + growth_rate) ** years / (1 + discount_rate) ** years
+    # Discount the terminal value to present value
+    terminal_value_discounted = \
+        terminal_value / (1 + wacc) ** years_forecast
 
-    return intrinsic_value
+    # Calculate the Total Enterprise Value (TEV)
+    # by summing discounted FCF and terminal value
+    total_enterprise_value = discounted_fcf + terminal_value_discounted
+
+    # This is our intrinsic value
+    return total_enterprise_value

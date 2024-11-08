@@ -4,11 +4,13 @@ Equity module
 
 import pandas as pd
 
-from .utils import AssetType, get_cagr
-from .asset import Asset
+from .asset import Asset, AssetType
+from .market import get_risk_free_rate, get_market_risk_premium
+from .utils import get_cagr, get_avg_pct_change, \
+    get_linear_forecast, get_intrinsinc_value
 
 
-class Equity(Asset):
+class Equity(Asset):  # pylint: disable=R0904
     """
     Equity class
     """
@@ -71,8 +73,8 @@ class Equity(Asset):
         """
         Trailing EPS
         """
-        if 'trailingEPS' in self._yahoo_ticker.info:
-            return self._yahoo_ticker.info['trailingEPS']
+        if 'trailingEps' in self._yahoo_ticker.info:
+            return self._yahoo_ticker.info['trailingEps']
         return None
 
     @property
@@ -80,8 +82,8 @@ class Equity(Asset):
         """
         Forward P/E ratio
         """
-        if 'forwardEPS' in self._yahoo_ticker.info:
-            return self._yahoo_ticker.info['forwardEPS']
+        if 'forwardEps' in self._yahoo_ticker.info:
+            return self._yahoo_ticker.info['forwardEps']
         return None
 
     @property
@@ -143,7 +145,7 @@ class Equity(Asset):
         Debt to Equity
         """
         if 'debtToEquity' in self._yahoo_ticker.info:
-            return self._yahoo_ticker.info['debtToEquity']
+            return self._yahoo_ticker.info['debtToEquity'] / 100
         return None
 
     # preferred stock
@@ -183,17 +185,24 @@ class Equity(Asset):
         Annual revenue
         """
         # Improve with analyst forecasts
-        # Cnnsider operating revenue rather than total revenue
+        # Consider operating revenue rather than total revenue
         return self._yahoo_ticker.income_stmt \
             .loc['Total Revenue'].sort_index().dropna()
 
     @property
-    def revenue_cagr(self) -> float:
+    def revenue_growth(self) -> float:
         """
-        Revenue cagr
+        Revenue growth
         """
-        # Consider mixing with quarterly revenues for recent data
-        return get_cagr(self.annual_revenue)
+        cagr = get_cagr(self.annual_revenue)
+        avg = get_avg_pct_change(self.annual_revenue)
+        forecast = get_linear_forecast(self.annual_revenue, years_forecast=2) \
+            .iloc[0] / self.annual_revenue.iloc[-1] - 1
+        # quarterly = self._yahoo_ticker.quarterly_income_stmt \
+        #     .loc['Total Revenue'].sort_index().dropna() \
+        #     .astype(float).pct_change(periods=4).dropna() \
+        #     .iloc[-1]
+        return min(x for x in (cagr, avg, forecast) if x is not None)
 
     @property
     def annual_gross_profit(self) -> pd.Series:
@@ -245,15 +254,115 @@ class Equity(Asset):
         return (self.annual_research_and_development
                 / self.annual_gross_profit).mean()
 
+    @property
+    def annual_net_income(self) -> pd.Series:
+        """
+        Annual net income
+        """
+        return self._yahoo_ticker.income_stmt \
+            .loc['Net Income'].sort_index().dropna()
+
     # ----------------------------------------------------------------------------
     # Cash flow statement
     # ----------------------------------------------------------------------------
 
-    def intrinsic_value(self) -> float:
+    @property
+    def price_to_cash_flow(self) -> float:
         """
-        Intrinsic value
+        Price-to-Cash-Flow (P/OCF)
+        Below 10
         """
-        # pass
+        # TODO return self.market_cap / 
+        # self._yahoo_ticker.get_cash_flow().iloc[0]
+
+    @property
+    def weighted_average_cost_of_capital(self) -> float:
+        """
+        Weighted average cost of capital
+
+        Docs:
+        - https://www.investopedia.com/terms/w/wacc.asp
+        - https://corporatefinanceinstitute.com/resources/valuation/what-is-wacc-formula/  # noqa
+        """
+        try:
+            # Total Debt (Average over past 3 years)
+            total_debt = self._yahoo_ticker.balance_sheet \
+                .loc['Total Debt'].values[:3].mean()  # average of last 3 years
+            net_debt = self._yahoo_ticker.balance_sheet \
+                .loc['Net Debt'].values[:3].mean()
+
+            # Tax Rate - Average of last 3 years
+            tax_rate = self._yahoo_ticker.income_stmt \
+                .loc['Tax Rate For Calcs'].values[:3].mean()
+
+            # Interest Expense - Average over past 3 years
+            interest_expense = self._yahoo_ticker.income_stmt \
+                .loc['Interest Expense'].values[:3].mean()
+
+            # Cost of Debt (after-tax)
+            cost_of_debt = (interest_expense / total_debt) * (1 - tax_rate) \
+                if total_debt else 0
+
+            # Cost of Equity (CAPM)
+            cost_of_equity = get_risk_free_rate(self.financial_currency) \
+                + self.beta * get_market_risk_premium()
+
+            # Debt and Equity Weights
+            equity_weight = self.market_cap / (self.market_cap + net_debt)
+            debt_weight = net_debt / (self.market_cap + net_debt)
+
+            # WACC Calculation
+            wacc = (equity_weight * cost_of_equity) \
+                + (debt_weight * cost_of_debt)
+        except KeyError:
+            wacc = 0.08
+        return wacc
+
+    @property
+    def intrinsic_value_per_share(self) -> float:
+        """
+        Intrinsic value per share
+        """
+        # Extract the Free Cash Flow (FCF) for the last few years
+        fcf = self._yahoo_ticker.cash_flow \
+            .loc['Free Cash Flow'].sort_index().dropna()
+
+        intrinsic_value = get_intrinsinc_value(
+            fcf,
+            risk_free_rate=get_risk_free_rate(
+                self.financial_currency),
+            wacc=self.weighted_average_cost_of_capital,
+            years_forecast=5)
+
+        # Get the exchange rate
+        exchange_rate = 1  # TODO get_exchange_rate(
+        # self.currency, self.financial_currency)
+
+        # Calculate the intrinsic stock price
+        return exchange_rate * intrinsic_value \
+            / self.shares_outstanding
+
+    @property
+    def graham_value_per_share(self) -> float:
+        """
+        Benjamin Graham's value per share
+        """
+        # TODO calculate EPS growth rate
+        eps_growth_rate = self.revenue_growth  # TODO
+
+        # Graham uses the current yield of AAA corp bonds
+        risk_free_rate = get_risk_free_rate(self.currency)
+
+        # Get the exchange rate because the financial_currency
+        # of EPS is not necessaruily the currency of previous_close
+        exchange_rate = 1  # TODO get_exchange_rate(
+        # self.currency, self.financial_currency)
+
+        if isinstance(self.trailing_eps, float):
+            return exchange_rate * self.trailing_eps \
+                * (8.5 + 2 * eps_growth_rate) \
+                / risk_free_rate
+        return None
 
     # ----------------------------------------------------------------------------
     # Analyst data
@@ -263,8 +372,7 @@ class Equity(Asset):
         """
         Analyst recommendation
         """
-        return self._yahoo_ticker.recommendations \
-            .sort_index().dropna().iloc[-1]['To Grade']
+        # return self._yahoo_ticker.recommendations
 
     # ----------------------------------------------------------------------------
     # Statistics
@@ -294,21 +402,32 @@ class Equity(Asset):
             'trailing_eps': self.trailing_eps,
             'forward_eps': self.forward_eps,
             'trailing_pe': self.trailing_pe,
-            'forward_pe': self.forward_pe,            
+            'forward_pe': self.forward_pe,
             'beta': self.beta,
             # -------- Balance sheet
             'quick_ratio': self.quick_ratio,
             'debt_to_equity': self.debt_to_equity,
             'return_on_equity': self.return_on_equity,
             # -------- Income statement
-            'revenue_cagr': self.revenue_cagr,
+            'revenue_growth': self.revenue_growth,
             # 'gross_margin_avg': self.gross_margin_avg,
             # 'selling_general_and_admin_ratio':
             #   self.selling_general_and_admin_ratio,
             # 'research_and_development_ratio':
             #   self.research_and_development_ratio,
             # -------- Cash flow statement
-            # intrinsic_value
+            'weighted_average_cost_of_capital': \
+            self.weighted_average_cost_of_capital,
+            'intrinsic_value_per_share': self.intrinsic_value_per_share,
+            'delta_intrinsic_value': \
+            self.intrinsic_value_per_share / self.previous_close - 1 \
+            if isinstance(self.intrinsic_value_per_share, float) else None,
+            'graham_value_per_share': self.graham_value_per_share,
+            'delta_graham_value': \
+            self.graham_value_per_share / self.previous_close - 1 \
+            if isinstance(self.graham_value_per_share, float) else None,
+            # -------- Analyst data
+            # 'analyst_recommendation': self.analyst_recommendation(),
             # -------- Statistics
             'rsi_14': super().rsi_14,
             })

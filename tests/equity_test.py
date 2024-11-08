@@ -6,7 +6,7 @@ import random
 import pandas as pd
 import yfinance as yf
 
-from src.folib.utils import AssetType
+from src.folib.asset import AssetType
 from src.folib.equity import Equity as Asset
 
 TICKERS = [
@@ -106,7 +106,7 @@ def test_financial_currency():
 
 def test_previous_close():
     """
-    test that previous close is a positive number
+    test previous_close
     """
     asset = Asset(T)
     assert isinstance(asset.previous_close, float)
@@ -115,7 +115,7 @@ def test_previous_close():
 
 def test_shares_outstanding():
     """
-    test that shares outstanding is a positive integer
+    test shares_outstanding
     """
     asset = Asset(T)
     assert isinstance(asset.shares_outstanding, int)
@@ -124,11 +124,51 @@ def test_shares_outstanding():
 
 def test_market_cap():
     """
-    test that market cap is a positive number
+    test market_cap
     """
     asset = Asset(T)
     assert isinstance(asset.market_cap, float)
     assert asset.market_cap > 0
+
+
+def test_trailing_eps():
+    """
+    test trailing_eps
+    """
+    asset = Asset(T)
+    if asset.trailing_eps is not None:
+        assert isinstance(asset.trailing_eps, float)
+        assert asset.trailing_eps > 0
+
+
+def test_forward_eps():
+    """
+    test forward_eps
+    """
+    asset = Asset(T)
+    if asset.forward_eps is not None:
+        assert isinstance(asset.forward_eps, float)
+        assert asset.forward_eps > 0
+
+
+def test_trailing_pe():
+    """
+    test trailing_pe
+    """
+    asset = Asset(T)
+    if asset.trailing_pe is not None:
+        assert isinstance(asset.trailing_pe, float)
+        assert asset.trailing_pe > 0
+
+
+def test_forward_pe():
+    """
+    test forward_pe
+    """
+    asset = Asset(T)
+    if asset.forward_pe is not None:
+        assert isinstance(asset.forward_pe, float)
+        assert asset.forward_pe > 0
 
 
 def test_beta():
@@ -158,17 +198,17 @@ def test_annual_revenue():
     assert isinstance(asset.annual_revenue, pd.Series)
 
 
-def test_revenue_cagr():
+def test_revenue_growth():
     """
-    test that revenue cagr is a float
+    test revenue_growth
     """
     asset = Asset(T)
-    assert isinstance(asset.revenue_cagr, float)
+    assert isinstance(asset.revenue_growth, float)
 
 
 def test_annual_gross_profit():
     """
-    test that annual gross profit is a pd.Series
+    test annual_gross_profit
     """
     asset = Asset(T)
     assert isinstance(asset.annual_gross_profit, pd.Series)
@@ -197,38 +237,35 @@ def test_annual_research_and_development():
     asset = Asset(T)
     assert isinstance(asset.annual_research_and_development, pd.Series)
 
+
 # ----------------------------------------------------------------------------
 # Cash flow statement
 # ----------------------------------------------------------------------------
 
-# ----------------------------------------------------------------------------
-# Finance KPIs
-# ----------------------------------------------------------------------------
 
-
-def test_trailing_pe():
+def test_weighted_average_cost_of_capital():
     """
-    test that trailing P/E is a positive number or None
+    test that weighted average cost of capital is a float
     """
     asset = Asset(T)
-    if asset.type == AssetType.EQUITY:
-        assert isinstance(asset.trailing_pe, float)
-        assert asset.trailing_pe > 0
-    elif asset.type == AssetType.ETF:
-        assert asset.trailing_pe is None
+    assert isinstance(asset.weighted_average_cost_of_capital, float)
 
 
-def test_forward_pe():
+def test_intrinsic_value_per_share():
     """
-    test that forward P/E is a positive number or None
+    test that intrinsic value per share is a float
     """
     asset = Asset(T)
-    if asset.type == AssetType.EQUITY:
-        assert isinstance(asset.forward_pe, float)
-        assert asset.forward_pe > 0
-    elif asset.type == AssetType.ETF:
-        assert asset.forward_pe is None
+    assert isinstance(asset.intrinsic_value_per_share, float)
 
+
+# ----------------------------------------------------------------------------
+# Analyst data
+# ----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
+# Statistics
+# ----------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------
 # Information report

@@ -3,12 +3,21 @@ Asset module
 """
 
 import datetime
+from enum import Enum
 from abc import ABC, abstractmethod
 import pandas as pd
 import matplotlib.pyplot as plt
 import yfinance as yf
 
-from .utils import AssetType, get_sma
+from .utils import get_sma
+
+
+class AssetType(Enum):
+    """
+    Asset Type
+    """
+    EQUITY = 0
+    ETF = 1
 
 
 class Asset(ABC):
