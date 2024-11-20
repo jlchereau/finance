@@ -20,12 +20,18 @@ Check the following sources for ideas and implementations or simply for test val
 
 1) https://www.quantconnect.com/announcements/15945/from-research-to-production-tutorials/p1
 2) Equity risk premium????
+3) 
+
+## Sentiment
+
+1) https://rapidapi.com/psychsignal/api/psychsignal-1
 
 ## Strategies
 
 
 
 ## Running and backtesting
+
 
 
 ## Miscellaneous

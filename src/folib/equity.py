@@ -105,6 +105,13 @@ class Equity(Asset):  # pylint: disable=R0904
         return None
 
     @property
+    def peg_ratio(self) -> float:
+        """
+        PEG ratio
+        """
+        return self._yahoo_ticker['pegRatio']
+
+    @property
     def beta(self) -> float | None:
         """
         Beta
@@ -275,6 +282,10 @@ class Equity(Asset):  # pylint: disable=R0904
         # TODO return self.market_cap / 
         # self._yahoo_ticker.get_cash_flow().iloc[0]
 
+    # ----------------------------------------------------------------------------
+    # Valuation
+    # ----------------------------------------------------------------------------
+
     @property
     def weighted_average_cost_of_capital(self) -> float:
         """
@@ -363,6 +374,22 @@ class Equity(Asset):  # pylint: disable=R0904
                 * (8.5 + 2 * eps_growth_rate) \
                 / risk_free_rate
         return None
+
+    @property
+    def lynch_value_per_share(self) -> float:
+        """
+        Peter Lynch's value per share
+
+        Docs:
+            - https://valueinvesting.io/AMZN/valuation/fair-value
+        """
+        # Gross profit is more representative of annual business activity
+        # than net income.
+        # earnings_growth_avg = self.annual_net_income \
+        #   .astype(float).pct_change().mean()
+        earnings_growth_avg = self.annual_gross_profit \
+            .astype(float).pct_change().mean()
+        return earnings_growth_avg * self.trailing_eps * self.peg_ratio
 
     # ----------------------------------------------------------------------------
     # Analyst data
